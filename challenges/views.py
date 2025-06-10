@@ -18,6 +18,24 @@ monthly_challenges = {
 }
 
 
+def index(request):
+    # create empty string to hold list items
+    list_items = ""
+    # get the keys of the dictionary which are the months and convert them to a list
+    months = list(monthly_challenges.keys())
+
+    # iterate through list of months and create list items with links
+    for month in months:
+        capitalized_month = month.capitalize()
+        # use reverse to get the URL for the month challenge
+        month_path = reverse("month-challenge", args=[month])
+        # append the list item to the list_items string to create a list of links of months
+        list_items += f"<li><a href=\"{month_path}\"> {capitalized_month}</a></li>"
+    # wrap the list items in an unordered list and return as HttpResponse
+    response_data = f"<ul> {list_items} </ul>"
+    return HttpResponse(response_data)
+
+
 def monthly_challenge_by_number(request, month):
     months = list(monthly_challenges.keys())
 
@@ -32,6 +50,7 @@ def monthly_challenge_by_number(request, month):
 def monthly_challenge(request, month):
     try:
         challenge_text = monthly_challenges[month]
-        return HttpResponse(challenge_text)
+        response_data = f"<h1>{challenge_text}</h1>"
+        return HttpResponse(response_data)
     except:
-        return HttpResponseNotFound("This is not a valid month")
+        return HttpResponseNotFound("<h1>This is not a valid month </h1>")
