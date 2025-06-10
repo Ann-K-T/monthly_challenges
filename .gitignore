@@ -1,0 +1,21 @@
+# Ignore virtual environment
+env/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Django-specific
+db.sqlite3
+*.log
+
+# Environment variables
+*.env
+
+# Editor folders
+.vscode/
+.idea/
+
+# Static/media (optional)
+staticfiles/
+media/
