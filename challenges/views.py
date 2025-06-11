@@ -10,13 +10,13 @@ monthly_challenges = {
     "march": "Learn Django for the whole month of March.",
     "april": "Read 2 books in April.",
     "may": "Practice yoga every day in May.",
-    "june": "Run 5km every day in June.",
+    "june": None,
     "july": "Drink 2 liters of water every day in July.",
     "august": "Write a blog post every week in August.",
     "september": "Learn a new language in September.",
     "october": "Complete a coding challenge every day in October.",
     "november": "Volunteer for a local charity in November.",
-    "december": "Reflect on the year and set goals for December."
+    "december": None
 }
 
 ##################################################
