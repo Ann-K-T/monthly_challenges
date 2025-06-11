@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
-# from django.template.loader import render_to_string
 
 
 # dictionary to hold monthly challenges
@@ -20,24 +19,18 @@ monthly_challenges = {
     "december": "Reflect on the year and set goals for December."
 }
 
+##################################################
+
 
 def index(request):
-    # create empty string to hold list items
-    list_items = ""
-    # get the keys of the dictionary which are the months and convert them to a list
     months = list(monthly_challenges.keys())
 
-    # iterate through list of months and create list items with links
-    for month in months:
-        capitalized_month = month
-        # use reverse to get the URL for the month challenge
-        month_path = reverse("month-challenge", args=[month])
-        # append the list item to the list_items string to create a list of links of months
-        list_items += f"<li><a href=\"{month_path}\"> {capitalized_month}</a></li>"
-    # wrap the list items in an unordered list and return as HttpResponse
-    response_data = f"<ul> {list_items} </ul>"
-    return HttpResponse(response_data)
+    return render(request, "challenges/index.html", {
+        "months": months
+    })
 
+
+##################################################
 
 def monthly_challenge_by_number(request, month):
     months = list(monthly_challenges.keys())
@@ -48,6 +41,8 @@ def monthly_challenge_by_number(request, month):
     redirect_month = months[month-1]
     redirect_path = reverse("month-challenge", args=[redirect_month])
     return HttpResponseRedirect(redirect_path)
+
+##################################################
 
 
 def monthly_challenge(request, month):
