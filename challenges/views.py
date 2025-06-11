@@ -29,7 +29,7 @@ def index(request):
 
     # iterate through list of months and create list items with links
     for month in months:
-        capitalized_month = month.capitalize()
+        capitalized_month = month
         # use reverse to get the URL for the month challenge
         month_path = reverse("month-challenge", args=[month])
         # append the list item to the list_items string to create a list of links of months
@@ -54,6 +54,7 @@ def monthly_challenge(request, month):
     try:
         challenge_text = monthly_challenges[month]
         return render(request, "challenges/challenge.html", {
-            "text": challenge_text, "month_name": month.capitalize()})
+            "text": challenge_text, "month_name": month
+        })
     except:
         return HttpResponseNotFound("<h1>This is not a valid month </h1>")
